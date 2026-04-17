@@ -10,5 +10,5 @@ const gachaRecordSchema = new mongoose.Schema({
 });
 
 module.exports =
-  mongoose.model.GachaRecord ||
+  mongoose.models.GachaRecord ||
   mongoose.model('GachaRecord', gachaRecordSchema);

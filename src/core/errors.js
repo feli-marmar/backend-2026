@@ -161,6 +161,11 @@ const errorTypes = {
     status: 500,
     code: 'DB_ERROR',
   },
+  RATE_LIMIT_EXCEEDED: {
+    description: 'Rate limit exceeded',
+    status: 429,
+    code: 'RATE_LIMIT_EXCEEDED_ERROR',
+  },
 };
 
 const errorResponder = (errorType, message = '') => {

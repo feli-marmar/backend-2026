@@ -36,7 +36,7 @@ async function performGacha(userId, userName) {
   await gachaRepository.incrementDailyLimit(userId, today);
 
   const record = {
-    user_id: userId,
+    userId,
     userName,
     timestamp: new Date(),
     isWin: isWinner,
@@ -61,8 +61,8 @@ async function getHistory(userId) {
   return gachaRepository.getGachaHistory(userId);
 }
 
-async function getprizeWithRemaining() {
-  const prizes = await gachaRepository.getAllprizes();
+async function getPrizesWithRemaining() {
+  const prizes = await gachaRepository.getAllPrizes();
   return prizes.map((p) => ({
     id: p.id,
     name: p.name,
@@ -72,7 +72,7 @@ async function getprizeWithRemaining() {
 }
 
 async function getWinners(prizeId = null) {
-  const winners = await gachaRepository.getWinnersByprize(prizeId);
+  const winners = await gachaRepository.getWinnersByPrize(prizeId);
   const anonymize = (name) =>
     name
       .split(' ')
@@ -91,6 +91,6 @@ async function getWinners(prizeId = null) {
 module.exports = {
   performGacha,
   getHistory,
-  getprizeWithRemaining,
+  getPrizesWithRemaining,
   getWinners,
 };

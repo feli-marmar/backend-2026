@@ -1,6 +1,4 @@
-// const mongoose = require('mongoose');
-
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const prizeSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,6 +6,4 @@ const prizeSchema = new mongoose.Schema({
   sisa_kuota_hadiah: { type: Number, required: true },
 });
 
-const Prize = mongoose.models.Prize || mongoose.model('Prize', prizeSchema);
-
-export default Prize;
+module.exports = mongoose.models.Prize || mongoose.model('Prize', prizeSchema);

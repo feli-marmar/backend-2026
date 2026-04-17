@@ -2,15 +2,15 @@ const Prize = require('../../../models/prize');
 const GachaRecord = require('../../../models/GachaRecord');
 const DailyLimit = require('../../../models/DailyLimit');
 
-async function getAllprizes() {
+async function getAllPrizes() {
   return Prize.find({});
 }
 
-async function getAvailableprize() {
+async function getAvailablePrizes() {
   return Prize.find({ sisa_kuota_hadiah: { $gt: 0 } });
 }
 
-async function decrementprizeQuota(prizeId) {
+async function decrementPrizeQuota(prizeId) {
   return Prize.updateOne(
     { _id: prizeId, sisa_kuota_hadiah: { $gt: 0 } },
     { $inc: { sisa_kuota_hadiah: -1 } }
@@ -37,19 +37,19 @@ async function incrementDailyLimit(userId, date) {
   );
 }
 
-async function getWinnersByprize(prizeId = null) {
+async function getWinnersByPrize(prizeId = null) {
   const filter = { isWin: true };
   if (prizeId) filter.prizeId = prizeId;
   return GachaRecord.find(filter).sort({ timestamp: 1 });
 }
 
 module.exports = {
-  getAllprizes,
-  getAvailableprize,
-  decrementprizeQuota,
+  getAllPrizes,
+  getAvailablePrizes,
+  decrementPrizeQuota,
   createGachaRecord,
   getGachaHistory,
   getDailyLimit,
   incrementDailyLimit,
-  getWinnersByprize,
+  getWinnersByPrize,
 };

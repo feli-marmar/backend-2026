@@ -6,7 +6,7 @@ const dailyLimitSchema = new mongoose.Schema({
   count: { type: Number, default: 0 },
 });
 
-dailyLimitSchema.index({ userId: 1, date: 1 }, { uniqe: true });
+dailyLimitSchema.index({ userId: 1, date: 1 }, { unique: true });
 
 module.exports =
-  mongoose.Model.DailyLimit || mongoose.model('DailyLimit', dailyLimitSchema);
+  mongoose.models.DailyLimit || mongoose.model('DailyLimit', dailyLimitSchema);
